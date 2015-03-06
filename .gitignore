@@ -1,0 +1,7 @@
+/vendor/
+Vagrantfile
+/provisioning
+/.vagrant
+/.idea
+/var/logs
+/var/cache
