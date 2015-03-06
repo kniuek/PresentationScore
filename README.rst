@@ -1,4 +1,4 @@
-Silex Skeleton
+KNI UEK Score Presentation
 ==============
 
 Welcome to the Silex Skeleton - a fully-functional Silex application that you
