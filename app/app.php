@@ -6,6 +6,7 @@ use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\RoutingServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
+use Silex\Provider\FormServiceProvider;
 
 $app = new Application();
 
@@ -18,6 +19,7 @@ $app->register(
 $app->register(new RoutingServiceProvider());
 $app->register(new ValidatorServiceProvider());
 $app->register(new HttpFragmentServiceProvider());
+$app->register(new FormServiceProvider());
 
 $app['twig'] = $app->extend('twig', function ($twig, $app) {
     // add custom globals, filters, tags, ...
