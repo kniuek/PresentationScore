@@ -1,10 +1,36 @@
-<!DOCTYPE html>
+<!DOCTYPE html 
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-    <title>Demo</title>
+	<title>PresentationScore</title>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<header class="container">
+			<div class="row text-primary">
+				<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 navbar-header active">Presentation Score</div>
+				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Zaloguj się</div>
+				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Zarejestruj się</div>
+				<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Dodaj prezentację</div>
+			</div>
+		</header>
+	</nav>
+	
+	<div class="container spacer">
+		{% block content %}
+		{% endblock %}
+	</div>
+	
+	<nav class="navbar navbar-inverse navbar-fixed-bottom">
+		<footer class="container">
+			<div class="row">
+				(c) KNI UEK
+			</div>
+		</footer>
+	</nav>
 </body>
 </html>

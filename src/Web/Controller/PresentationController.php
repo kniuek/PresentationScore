@@ -5,7 +5,7 @@ namespace Web\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-class DemoController
+class PresentationController
 {
     protected $twig;
 
@@ -18,7 +18,7 @@ class DemoController
     {
         return new Response(
             $this->twig->render(
-                'Web/Resources/views/Presentation/index.html.twig',
+                'Presentation/index.html.twig',
                 array(
                 )
             )
@@ -29,7 +29,7 @@ class DemoController
     {
         return new Response(
             $this->twig->render(
-                'Web/Resources/views/Presentation/record.html.twig',
+                'Presentation/record.html.twig',
                 array(
                 )
             )

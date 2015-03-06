@@ -5,12 +5,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Demo\Controller\DemoController;
+use Web\Controller\PresentationController;
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
-$app['controller.demo'] = function() use ($app) {
-    return new DemoController(
+$app['controller.presentation'] = function() use ($app) {
+    return new PresentationController(
         $app['twig']
     );
 };

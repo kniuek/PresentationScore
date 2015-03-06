@@ -1,6 +1,6 @@
 <?php
 
 $app
-    ->get('/', 'controller.demo:demoAction')
+    ->get('/', 'controller.presentation:indexAction')
     ->bind('homepage')
 ;

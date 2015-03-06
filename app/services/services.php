@@ -1,11 +1,11 @@
 <?php
 
-use Demo\Controller\DemoController;
+use Web\Controller\PresentationController;
 use Silex\Provider\MonologServiceProvider;
 
 
-$app['controller.demo'] = function () use ($app) {
-    return new DemoController(
+$app['controller.presentation'] = function () use ($app) {
+    return new PresentationController(
         $app['twig']
     );
 };
