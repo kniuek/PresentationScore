@@ -27,6 +27,8 @@ class DemoController
 
     public function recordAction(Request $request)
     {
+
+
         return new Response(
             $this->twig->render(
                 'Web/Resources/views/Presentation/record.html.twig',
@@ -38,6 +40,7 @@ class DemoController
 
     public function uploadAction(Request $request)
     {
+
         return new Response(
             $this->twig->render(
                 'Web/Resources/views/Presentation/upload.html.twig',
