@@ -7,6 +7,7 @@ use Kni\Domain\EventListener\UploadListener;
 use Kni\Presentation\DomainManager\PresentationManager;
 use Kni\Domain\AbstractFactory\AbstractFactory;
 
+
 $app['filesystem.adapter.local'] = function () {
     return new LocalAdapter(__DIR__.'/../../var/media');
 };

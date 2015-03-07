@@ -20,7 +20,10 @@
         "symfony/translation": "~2.3",
         "symfony/twig-bridge": "~2.3",
         "symfony/validator": "~2.3",
-        "knplabs/gaufrette": "dev-master"
+        "knplabs/gaufrette": "dev-master",
+        "doctrine/dbal": "~2.2",
+        "symfony/security": "~2.3",
+        "gigablah/silex-oauth": "~0.1"
     },
     "autoload": {
         "psr-0": { "": "src/" }

@@ -15,3 +15,31 @@ $app
     ->post('/upload', 'kni.controller.presentation:uploadAction')
     ->bind('presentation.upload.post')
 ;
+
+
+//$app->before(function (Request $request, Application $app) use ($app){
+//    $token = $app['security']->getToken();
+//    $app['user'] = null;
+//
+//    if ($token && !$app['security.trust_resolver']->isAnonymous($token)) {
+//        $app['user'] = $token->getUser();
+//    }
+//});
+
+$app->get('/login', function () use ($app) {
+    $services = array_keys($app['oauth.services']);
+
+    return $app['twig']->render('login.html.twig', array(
+        'login_paths' => array_map(function ($service) use ($app) {
+            return $app['url_generator']->generate('_auth_service', array(
+                'service' => $service,
+                '_csrf_token' => $app['form.csrf_provider']->generateCsrfToken('oauth')
+            ));
+        }, array_combine($services, $services)),
+        'logout_path' => $app['url_generator']->generate('logout', array(
+            '_csrf_token' => $app['form.csrf_provider']->generateCsrfToken('logout')
+        ))
+    ));
+})->bind('modal-login');
+
+$app->match('/logout', function () {})->bind('logout');
