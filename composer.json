@@ -20,16 +20,13 @@
         "symfony/translation": "~2.3",
         "symfony/twig-bridge": "~2.3",
         "symfony/validator": "~2.3",
-<<<<<<< HEAD
         "knplabs/gaufrette": "dev-master",
         "doctrine/dbal": "~2.2",
         "symfony/security": "~2.3",
         "gigablah/silex-oauth": "~0.1"
-=======
         "knplabs/gaufrette": "dev-master", 
         "pagerfanta/pagerfanta": "dev-master", 
         "franmomu/silex-pagerfanta-provider": "dev-master"
->>>>>>> origin/forms
     },
     "autoload": {
         "psr-0": { "": "src/" }
