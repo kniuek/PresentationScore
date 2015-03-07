@@ -10,11 +10,22 @@ class PresentationController
 {
     protected $twig;
     protected $formFactory;
+    protected $domainManager;
+    protected $presentationFactory;
 
-    public function __construct($twig, $formFactory)
+    public function __construct($twig, $formFactory, $manager)
     {
         $this->twig = $twig;
         $this->formFactory = $formFactory;
+        $this->domainManager = $manager;
+    }
+
+    /**
+     * @param mixed $presentationFactory
+     */
+    public function setPresentationFactory($presentationFactory)
+    {
+        $this->presentationFactory = $presentationFactory;
     }
 
     public function indexAction(Request $request)
@@ -44,6 +55,12 @@ class PresentationController
     public function uploadAction(Request $request)
     {
         $form = $this->formFactory->create(new PresentationType());
+
+        if ($request->isMethod('POST') && $form->handleRequest($request) && $form->isValid()) {
+            $presentation = $this->presentationFactory->create($form->getData());
+            $this->domainManager->create($presentation);
+        }
+
         return new Response(
             $this->twig->render(
                 'Presentation/upload.html.twig',

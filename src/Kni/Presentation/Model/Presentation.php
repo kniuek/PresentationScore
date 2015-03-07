@@ -2,10 +2,29 @@
 
 namespace Kni\Presentation\Model;
 
-class Presentation
+use Storage\Model\FileAwareInterface;
+
+class Presentation implements FileAwareInterface
 {
     protected $title;
     protected $description;
+    protected $path;
+
+    /**
+     * @return mixed
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * @param mixed $path
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+    }
     protected $file;
 
     /**
@@ -57,4 +76,8 @@ class Presentation
     }
 
 
+    public function hasFile()
+    {
+        return $this->file !== null;
+    }
 }

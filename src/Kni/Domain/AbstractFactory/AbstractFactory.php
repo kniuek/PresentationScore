@@ -22,6 +22,8 @@ class AbstractFactory
         $object = new $this->class();
 
         $this->hydrateObject($object, $data);
+
+        return $object;
     }
 
     protected function hydrateObject($object, $data)

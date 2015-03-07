@@ -1,5 +1,4 @@
 <?php
-
 namespace Web\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
@@ -14,6 +13,7 @@ class PresentationType extends AbstractType
 		$builder
 			->add('title', 'text')
 			->add('description', 'text')
+			->add('file', 'file')
 		;
 	}
 

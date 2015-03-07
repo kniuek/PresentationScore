@@ -11,9 +11,13 @@ use Web\Controller\PresentationController;
 //Request::setTrustedProxies(array('127.0.0.1'));
 
 $app['kni.controller.presentation'] = function() use ($app) {
-    return new PresentationController(
-        $app['twig'], $app['form.factory']
+    $controller = new PresentationController(
+        $app['twig'], $app['form.factory'], $app['kni.manager.presentation']
     );
+
+    $controller->setPresentationFactory($app['kni.factory.presentation']);
+
+    return $controller;
 };
 
 
