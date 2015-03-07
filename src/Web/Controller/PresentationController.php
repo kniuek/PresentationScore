@@ -6,14 +6,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\ArrayAdapter;
+use Web\Form\Type\PresentationType;
 
 class PresentationController
 {
     protected $twig;
+    protected $formFactory;
+    protected $domainManager;
+    protected $presentationFactory;
 
-    public function __construct($twig)
+    public function __construct($twig, $formFactory, $manager)
     {
         $this->twig = $twig;
+        $this->formFactory = $formFactory;
+        $this->domainManager = $manager;
     }
 
     public function indexAction(Request $request)
@@ -71,16 +77,25 @@ Ut erat erat, faucibus sit amet nulla at, lacinia interdum quam. Quisque quis sa
 
     public function uploadAction(Request $request)
     {
+        $form = $this->formFactory->create(new PresentationType());
+        if ($request->isMethod('POST') && $form->handleRequest($request) && $form->isValid()) {
+            $presentation = $this->presentationFactory->create($form->getData());
+            $this->domainManager->create($presentation);
+        }
+
         return new Response(
             $this->twig->render(
-                'Web/Resources/views/Presentation/upload.html.twig',
+                'Presentation/upload.html.twig',
                 array(
+                    'form' => $form->createView()
                 )
             )
         );
     }
 
-
+    /**
+     * @param mixed $presentationFactory
+     */
     public function setPresentationFactory($presentationFactory)
     {
         $this->presentationFactory = $presentationFactory;
