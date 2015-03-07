@@ -12,7 +12,7 @@ use Web\Controller\PresentationController;
 
 $app['kni.controller.presentation'] = function() use ($app) {
     return new PresentationController(
-        $app['twig']
+        $app['twig'], $app['form.factory']
     );
 };
 
