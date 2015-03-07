@@ -9,6 +9,8 @@ class Presentation implements FileAwareInterface
     protected $title;
     protected $description;
     protected $path;
+    protected $file;
+
 
     /**
      * @return mixed
@@ -25,7 +27,7 @@ class Presentation implements FileAwareInterface
     {
         $this->path = $path;
     }
-    protected $file;
+    
 
     /**
      * @return mixed
