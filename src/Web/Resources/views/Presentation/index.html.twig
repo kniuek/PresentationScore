@@ -1,16 +1,16 @@
 {% extends 'Layout/base.html.twig' %}
 
 {% block content %}
-	{% for presentation in presentations %}
+	{% for presentation in pagerfanta %}
 		<div class="row">
 			<p>{{ presentation.title }}</p>
 			<p>{{ presentation.author }}</p>
 			<p>{{ presentation.description }}</p>
 		</div>
 	{% endfor %}
-	{# {% if events.hasNextPage() %}
+	{% if pagerfanta.hasNextPage() %}
 		<li>
-		    <a href="{{ path('homepage',{page: presentations.getNextPage()}) }}">Następny</a>
+		    <a href="{{ path('homepage',{page: pagerfanta.getNextPage()}) }}">Następny</a>
 		</li>
-	{% endif %} #}
+	{% endif %}
 {% endblock %}

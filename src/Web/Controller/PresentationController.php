@@ -4,28 +4,16 @@ namespace Web\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Web\Form\Type\PresentationType;
+use Pagerfanta\Pagerfanta;
+use Pagerfanta\Adapter\ArrayAdapter;
 
 class PresentationController
 {
     protected $twig;
-    protected $formFactory;
-    protected $domainManager;
-    protected $presentationFactory;
 
-    public function __construct($twig, $formFactory, $manager)
+    public function __construct($twig)
     {
         $this->twig = $twig;
-        $this->formFactory = $formFactory;
-        $this->domainManager = $manager;
-    }
-
-    /**
-     * @param mixed $presentationFactory
-     */
-    public function setPresentationFactory($presentationFactory)
-    {
-        $this->presentationFactory = $presentationFactory;
     }
 
     public function indexAction(Request $request)
@@ -49,6 +37,11 @@ Ut erat erat, faucibus sit amet nulla at, lacinia interdum quam. Quisque quis sa
             array_push($presentations, $presentation);
         }
 
+        $adapter = new ArrayAdapter($presentations);
+        $pagerfanta = new Pagerfanta($adapter);
+        $pagerfanta->setMaxPerPage(3);
+        $pagerfanta->setCurrentPage($request->query->get('page', 1));
+
         // $presentations
         //     ->getPaginatePresentations()
         //     ->setMaxPerPage(3)
@@ -59,7 +52,7 @@ Ut erat erat, faucibus sit amet nulla at, lacinia interdum quam. Quisque quis sa
             $this->twig->render(
                 'Presentation/index.html.twig',
                 array(
-                    'presentations' => $presentations
+                    'pagerfanta' => $pagerfanta
                 )
             )
         );
@@ -67,8 +60,6 @@ Ut erat erat, faucibus sit amet nulla at, lacinia interdum quam. Quisque quis sa
 
     public function recordAction(Request $request)
     {
-
-
         return new Response(
             $this->twig->render(
                 'Presentation/record.html.twig',
@@ -80,20 +71,18 @@ Ut erat erat, faucibus sit amet nulla at, lacinia interdum quam. Quisque quis sa
 
     public function uploadAction(Request $request)
     {
-        $form = $this->formFactory->create(new PresentationType());
-
-        if ($request->isMethod('POST') && $form->handleRequest($request) && $form->isValid()) {
-            $presentation = $this->presentationFactory->create($form->getData());
-            $this->domainManager->create($presentation);
-        }
-
         return new Response(
             $this->twig->render(
-                'Presentation/upload.html.twig',
+                'Web/Resources/views/Presentation/upload.html.twig',
                 array(
-                    'form' => $form->createView()
                 )
             )
         );
+    }
+
+
+    public function setPresentationFactory($presentationFactory)
+    {
+        $this->presentationFactory = $presentationFactory;
     }
 }

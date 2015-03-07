@@ -20,7 +20,9 @@
         "symfony/translation": "~2.3",
         "symfony/twig-bridge": "~2.3",
         "symfony/validator": "~2.3",
-        "knplabs/gaufrette": "dev-master"
+        "knplabs/gaufrette": "dev-master", 
+        "pagerfanta/pagerfanta": "dev-master", 
+        "franmomu/silex-pagerfanta-provider": "dev-master"
     },
     "autoload": {
         "psr-0": { "": "src/" }
