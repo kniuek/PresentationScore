@@ -1,5 +1,9 @@
 {% extends 'Layout/base.html.twig' %}
 
 {% block content %}
-    Tu powienie byc forlmularz
+    <form action="#" method="post">
+    	{{ form_widget(form) }}
+
+    	<input type="submit" name="submit" />
+	</form>
 {% endblock %}
