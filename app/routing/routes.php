@@ -3,7 +3,6 @@
 $app
     ->get('/', 'kni.controller.presentation:indexAction')
     ->bind('homepage')
-
 ;
 
 $app

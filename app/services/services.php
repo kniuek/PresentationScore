@@ -5,7 +5,6 @@ use Gaufrette\Adapter\Local as LocalAdapter;
 use Storage\Uploader\Uploader;
 use Kni\Domain\EventListener\UploadListener;
 
-
 $app['filesystem.adapter.local'] = function () {
     return new LocalAdapter('/var/media');
 };
