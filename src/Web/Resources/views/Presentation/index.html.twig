@@ -1,2 +1,16 @@
-<html>
-</html>
+{% extends 'Layout/base.html.twig' %}
+
+{% block content %}
+	{% for presentation in presentations %}
+		<div class="row">
+			<p>{{ presentation.title }}</p>
+			<p>{{ presentation.author }}</p>
+			<p>{{ presentation.description }}</p>
+		</div>
+	{% endfor %}
+	{# {% if events.hasNextPage() %}
+		<li>
+		    <a href="{{ path('homepage',{page: presentations.getNextPage()}) }}">Następny</a>
+		</li>
+	{% endif %} #}
+{% endblock %}
