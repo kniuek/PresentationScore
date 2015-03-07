@@ -6,3 +6,4 @@ Vagrantfile
 /var/logs
 /var/cache
 /composer.phar
+/var/media/*
