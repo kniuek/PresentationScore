@@ -7,3 +7,4 @@ Vagrantfile
 /var/cache
 /composer.phar
 /var/media/*
+.DS_Store

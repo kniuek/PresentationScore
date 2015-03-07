@@ -8,7 +8,16 @@ $app
 $app
     ->get('/upload', 'kni.controller.presentation:uploadAction')
     ->bind('presentation.upload')
-    
+;
+
+$app
+    ->get('/record', 'kni.controller.presentation:recordAction')
+    ->bind('presentation.record')
+;
+
+$app
+    ->post('/file/upload', 'kni.controller.upload:uploadAction')
+    ->bind('file.upload')
 ;
 
 $app

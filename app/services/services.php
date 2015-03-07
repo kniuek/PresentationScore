@@ -6,6 +6,7 @@ use Storage\Uploader\Uploader;
 use Kni\Domain\EventListener\UploadListener;
 use Kni\Presentation\DomainManager\PresentationManager;
 use Kni\Domain\AbstractFactory\AbstractFactory;
+use Storage\Manager\FileManager;
 
 
 $app['filesystem.adapter.local'] = function () {
@@ -34,10 +35,28 @@ $app['dispatcher']->addListener(
     array($app['listener.upload'], 'onSendPresentation')
 );
 
+$app['dispatcher']->addListener(
+    'resource.file.pre_create',
+    array($app['listener.upload'], 'onSendPresentation')
+);
+
+$app['dispatcher']->addListener(
+    'resource.file.pre_update',
+    array($app['listener.upload'], 'onSendPresentation')
+);
+
 $app['kni.manager.presentation'] = function() use ($app) {
     return new PresentationManager('manager', $app['dispatcher']);
 };
 
 $app['kni.factory.presentation'] = function() use ($app) {
     return new AbstractFactory('Kni\Presentation\Model\Presentation');
+};
+
+$app['kni.factory.file'] = function() use ($app) {
+    return new AbstractFactory('Storage\Model\File');
+};
+
+$app['kni.manager.file'] = function() use ($app) {
+    return new FileManager('manager', $app['dispatcher']);
 };

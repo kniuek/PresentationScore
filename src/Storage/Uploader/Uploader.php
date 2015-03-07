@@ -8,6 +8,7 @@ use Storage\Model\FileAwareInterface;
 class Uploader
 {
     protected $filesystem;
+
     public function __construct(Filesystem $filesystem)
     {
         $this->filesystem = $filesystem;

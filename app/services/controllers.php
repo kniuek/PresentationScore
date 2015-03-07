@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Web\Controller\PresentationController;
+use Web\Controller\UploadController;
+
 
 //Request::setTrustedProxies(array('127.0.0.1'));
 
@@ -15,6 +17,15 @@ $app['kni.controller.presentation'] = function() use ($app) {
     );
 
     $controller->setPresentationFactory($app['kni.factory.presentation']);
+
+    return $controller;
+};
+
+$app['kni.controller.upload'] = function() use ($app) {
+    $controller = new UploadController(
+        $app['kni.manager.file'],
+        $app['kni.factory.file']
+    );
 
     return $controller;
 };
