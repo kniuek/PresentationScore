@@ -25,16 +25,6 @@ $app
     ->bind('presentation.upload.post')
 ;
 
-
-//$app->before(function (Request $request, Application $app) use ($app){
-//    $token = $app['security']->getToken();
-//    $app['user'] = null;
-//
-//    if ($token && !$app['security.trust_resolver']->isAnonymous($token)) {
-//        $app['user'] = $token->getUser();
-//    }
-//});
-
 $app->get('/login', function () use ($app) {
     $services = array_keys($app['oauth.services']);
 

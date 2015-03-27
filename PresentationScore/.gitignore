@@ -1,0 +1,10 @@
+/vendor/
+Vagrantfile
+/provisioning
+/.vagrant
+/.idea
+/var/logs
+/var/cache
+/composer.phar
+/var/media/*
+.DS_Store

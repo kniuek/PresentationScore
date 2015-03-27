@@ -13,7 +13,7 @@ use Web\Controller\UploadController;
 
 $app['kni.controller.presentation'] = function() use ($app) {
     $controller = new PresentationController(
-        $app['twig'], $app['form.factory'], $app['kni.manager.presentation']
+        $app['twig'], $app['form.factory'], $app['kni.manager.presentation'], $app['filesystem']
     );
 
     $controller->setPresentationFactory($app['kni.factory.presentation']);
