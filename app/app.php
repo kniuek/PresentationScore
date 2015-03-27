@@ -7,6 +7,7 @@ use Silex\Provider\RoutingServiceProvider;
 use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\FormServiceProvider;
+use \Mongo;
 
 $app = new Application();
 
@@ -31,6 +32,13 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
         'charset'   => 'utf8',
     ),
 ));
+
+$app['config.server'] = 'localhost';
+$app['mongo'] = function () use ($app) {
+    $connection =  new MongoClient($app['config.server']);
+    return $connection;
+};
+
 
 $app->register(new Web\OAuthServiceProvider(), array(
     'oauth.services' => array(

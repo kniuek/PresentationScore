@@ -45,8 +45,13 @@ $app['dispatcher']->addListener(
     array($app['listener.upload'], 'onSendPresentation')
 );
 
+$app['document.manager.default'] = function () use ($app) {
+    $db = $app['mongo']->$app['config.database'];
+    return new BaseMongoManager($db);
+};
+
 $app['kni.manager.presentation'] = function() use ($app) {
-    return new PresentationManager('manager', $app['dispatcher']);
+    return new PresentationManager($app['document.manager.default'], $app['dispatcher']);
 };
 
 $app['kni.factory.presentation'] = function() use ($app) {

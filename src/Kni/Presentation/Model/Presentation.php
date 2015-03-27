@@ -9,7 +9,16 @@ class Presentation implements FileAwareInterface
     protected $title;
     protected $description;
     protected $path;
+    protected $file;
 
+    public function toArray()
+    {
+        return [
+            'title' => $this->getTitle(),
+            'description' => $this->getDescription(),
+            'path' => $this->getPath(),
+        ];
+    }
     /**
      * @return mixed
      */
@@ -25,7 +34,6 @@ class Presentation implements FileAwareInterface
     {
         $this->path = $path;
     }
-    protected $file;
 
     /**
      * @return mixed

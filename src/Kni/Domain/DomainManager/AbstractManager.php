@@ -8,17 +8,21 @@
 
 namespace Kni\Domain\DomainManager;
 
+use Persistence\ManagerInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 
 class AbstractManager
 {
     protected $eventDispatcher;
     protected $manager;
+    protected $resource;
 
-    public function __construct($manager, $eventDispatcher)
+    public function __construct(ManagerInterface $manager, $eventDispatcher, $resource = 'object')
     {
         $this->eventDispatcher = $eventDispatcher;
         $this->manager = $manager;
+        $this->resource = $resource;
+        $this->manager->setNamespace($this->getResourceName());
     }
 
     /**
@@ -30,8 +34,8 @@ class AbstractManager
     {
         $this->dispatchEvent($this->getEventName('pre_create'), new GenericEvent($resource));
 
-//        $this->manager->persist($resource);
-//        $this->manager->flush();
+        $this->manager->persist($resource);
+        $this->manager->flush();
 
         $this->dispatchEvent($this->getEventName('post_create'), new GenericEvent($resource));
 
@@ -64,7 +68,7 @@ class AbstractManager
     {
         $this->dispatchEvent($this->getEventName('pre_delete'), new GenericEvent($resource));
 
-        $this->manager->persist($resource);
+        $this->manager->delete($resource);
         $this->manager->flush();
 
         $this->dispatchEvent($this->getEventName('post_delete'), new GenericEvent($resource));
@@ -79,7 +83,7 @@ class AbstractManager
 
     protected function getResourceName()
     {
-        return 'object';
+        return $this->resource;
     }
 
     protected function getEventName($action)
