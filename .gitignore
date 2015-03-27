@@ -5,6 +5,5 @@ Vagrantfile
 /.idea
 /var/logs
 /var/cache
-/composer.phar
 /var/media/*
 .DS_Store
