@@ -31,10 +31,11 @@
 
 
 .frame .title{
-	text-align: center;	
+	text-align: center;
 }
 
 .frame .text{
 	position: absolute;
 	left: 2%;
+	
 }
