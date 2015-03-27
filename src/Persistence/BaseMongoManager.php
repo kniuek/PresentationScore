@@ -38,7 +38,7 @@ class BaseMongoManager implements ManagerInterface
     protected function getCollection()
     {
         $db = $this->getDb();
-        $collection = $db->selectCollection($this->collection);
+        $collection = $this->database->{$this->collection};
 
         return $collection;
     }
