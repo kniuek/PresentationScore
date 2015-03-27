@@ -23,10 +23,9 @@
         "knplabs/gaufrette": "dev-master",
         "doctrine/dbal": "~2.2",
         "symfony/security": "~2.3",
-        "gigablah/silex-oauth": "~0.1"
+        "gigablah/silex-oauth": "~0.1",
         "knplabs/gaufrette": "dev-master", 
-        "pagerfanta/pagerfanta": "dev-master", 
-        "franmomu/silex-pagerfanta-provider": "dev-master"
+        "pagerfanta/pagerfanta": "dev-master"
     },
     "autoload": {
         "psr-0": { "": "src/" }
