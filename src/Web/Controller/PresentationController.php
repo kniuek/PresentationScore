@@ -14,12 +14,14 @@ class PresentationController
     protected $formFactory;
     protected $domainManager;
     protected $presentationFactory;
+    protected $filesystem;
 
-    public function __construct($twig, $formFactory, $manager)
+    public function __construct($twig, $formFactory, $manager, $filesystem)
     {
         $this->twig = $twig;
         $this->formFactory = $formFactory;
         $this->domainManager = $manager;
+        $this->filesystem = $filesystem;
     }
 
     public function indexAction(Request $request)
@@ -77,6 +79,7 @@ Ut erat erat, faucibus sit amet nulla at, lacinia interdum quam. Quisque quis sa
 
     public function uploadAction(Request $request)
     {
+        
         $form = $this->formFactory->create(new PresentationType());
         if ($request->isMethod('POST') && $form->handleRequest($request) && $form->isValid()) {
             $presentation = $this->presentationFactory->create($form->getData());

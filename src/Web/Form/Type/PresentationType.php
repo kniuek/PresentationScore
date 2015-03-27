@@ -13,7 +13,10 @@ class PresentationType extends AbstractType
 		$builder
 			->add('title', 'text')
 			->add('description', 'text')
-			->add('file', 'file')
+			->add('file', 'file'
+                                //, array(
+                            //"attr" => array("multiple" => "multiple"))
+                        )
 		;
 	}
 
