@@ -47,11 +47,9 @@ $app['dispatcher']->addListener(
 );
 
 $app['document.manager.default'] = function () use ($app) {
-    $db = $app['mongo']->cos;
+    $db = $app['mongo']->{$app['db.name']};
     return new BaseMongoManager($db);
 };
-
-
 
 $app['kni.factory.presentation'] = function() use ($app) {
     return new AbstractFactory('Kni\Presentation\Model\Presentation');

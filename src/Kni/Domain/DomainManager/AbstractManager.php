@@ -25,6 +25,10 @@ class AbstractManager
         $this->manager->setNamespace($this->getResourceName());
     }
 
+    public function getAll()
+    {
+        return $this->manager->findAll();
+    }
     /**
      * @param object $resource
      *
