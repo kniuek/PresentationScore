@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Web\Controller\PresentationController;
 use Web\Controller\UploadController;
+use Web\Controller\StreamController;
 
 
 //Request::setTrustedProxies(array('127.0.0.1'));

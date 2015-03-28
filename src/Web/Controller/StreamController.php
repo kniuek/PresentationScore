@@ -21,7 +21,7 @@ class StreamController
 
     public function streamAction(Request $request)
     {
-        $path = '/1e/fc/32571be34f3089a6fb78111ee035.mp4';
+        $path = $request->get('path');
 
         $filesystem = $this->filesystem;
 

@@ -6,7 +6,7 @@ $app
 ;
 
 $app
-    ->get('/', 'kni.controller.stream:streamAction')
+    ->get('/stream', 'kni.controller.stream:streamAction')
     ->bind('stream')
 ;
 
