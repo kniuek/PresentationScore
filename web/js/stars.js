@@ -65,12 +65,12 @@ $('#half').raty({
   hints : [['bad 1/2', 'bad'], ['poor 1/2', 'poor'], ['regular 1/2', 'regular'], ['good 1/2', 'good'], ['gorgeous 1/2', 'gorgeous']]
 });
 
-$('#starHalf').raty({
+$('.starHalf').raty({
   half     : true,
   path     : null,
-  starHalf : 'demo/images/star-half-mono.png',
-  starOff  : '../lib/images/star-off.png',
-  starOn   : '../lib/images/star-on.png'
+  starHalf : '../images/star-on.png',
+  starOff  : '../images/star-off.png',
+  starOn   : '../images/star-on.png'
 });
 
 $('#click').raty({
@@ -170,9 +170,9 @@ $('#targetType').raty({
   targetType : 'score'
 });
 
-$('#targetKeep').raty({
+$('.targetKeep').raty({
   cancel     : true,
-  target     : '#targetKeep-hint',
+  target     : '.targetKeep-hint',
   targetKeep : true
 });
 
