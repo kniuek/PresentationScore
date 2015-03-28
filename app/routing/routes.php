@@ -6,6 +6,11 @@ $app
 ;
 
 $app
+    ->get('/', 'kni.controller.stream:streamAction')
+    ->bind('stream')
+;
+
+$app
     ->get('/upload', 'kni.controller.presentation:uploadAction')
     ->bind('presentation.upload')
 ;

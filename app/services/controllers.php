@@ -30,6 +30,12 @@ $app['kni.controller.upload'] = function() use ($app) {
     return $controller;
 };
 
+$app['kni.controller.stream'] = function() use ($app) {
+    $controller = new StreamController(
+        $app['filesystem']
+    );
+    return $controller;
+};
 
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
