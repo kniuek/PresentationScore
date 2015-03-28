@@ -46,7 +46,7 @@ $app['dispatcher']->addListener(
 );
 
 $app['document.manager.default'] = function () use ($app) {
-    $db = $app['mongo']->$app['config.database'];
+    $db = $app['mongo']->moja_baza;
     return new BaseMongoManager($db);
 };
 

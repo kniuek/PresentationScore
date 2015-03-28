@@ -35,10 +35,11 @@ class BaseMongoManager implements ManagerInterface
         // TODO: Implement delete() method.
     }
 
-    protected function getCollection()
+    public function getCollection()
     {
-        $db = $this->getDb();
-        $collection = $this->database->{$this->collection};
+        //$this->setNamespace('presentation');
+        $db = $this->database;
+        $collection = $db->{$this->collection};
 
         return $collection;
     }
