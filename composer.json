@@ -29,7 +29,8 @@
         "doctrine/dbal": "~2.2",
         "swiftmailer/swiftmailer": "5.*",
         "monolog/monolog": "~1.4,>=1.4.1",
-        "symfony/security-core": "~2.3,<2.7"
+        "symfony/security-core": "~2.3,<2.7",
+        "symfony/console": "~2.3,<2.7"
     },
     "autoload": {
         "psr-0": { "": "src/" }

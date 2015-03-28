@@ -14,10 +14,11 @@ use Web\Controller\StreamController;
 
 $app['kni.controller.presentation'] = function() use ($app) {
     $controller = new PresentationController(
-        $app['twig'], $app['form.factory'], $app['kni.manager.presentation'], $app['filesystem']
+        $app['twig'], $app['form.factory'], $app['kni.manager.presentation']
     );
 
     $controller->setPresentationFactory($app['kni.factory.presentation']);
+    $controller->setRepository($app['kni.repository.presentation']);
 
     return $controller;
 };

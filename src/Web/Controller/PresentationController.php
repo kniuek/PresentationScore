@@ -7,9 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Web\Form\Type\PresentationType;
-use Gaufrette\Filesystem;
-use Symfony\Component\HttpFoundation\StreamedResponse;
-use Gaufrette\StreamWrapper;
+use Kni\Presentation\Repository\PresentationRepositoryInterface;
+
 
 class PresentationController
 {
@@ -19,37 +18,22 @@ class PresentationController
     protected $presentationFactory;
 
     /**
-     * @var Filesystem
+     * @var PresentationRepositoryInterface
      */
-    protected $filesystem;
+    protected $repository;
 
-    public function __construct($twig, $formFactory, $manager, $filesystem)
+    public function __construct($twig, $formFactory, $manager)
     {
         $this->twig = $twig;
         $this->formFactory = $formFactory;
         $this->domainManager = $manager;
-        $this->filesystem = $filesystem;
-    }
-
-    public function showAction(Request $request)
-    {
-        $path = '/1e/fc/32571be34f3089a6fb78111ee035.mp4';
-
-        $filesystem = $this->filesystem;
-
-        return new StreamedResponse(
-            function () use ($path, $filesystem) {
-                $map = StreamWrapper::getFilesystemMap();
-                $map->set('stream', $filesystem);
-                StreamWrapper::register();
-                readfile('gaufrette://stream'.$path);
-            }, 200, array('Content-Type' => $filesystem->mimeType($path))
-        );
     }
 
     public function indexAction(Request $request)
     {
         $presentations = array();
+
+        $presentations = $this->repository->findAll();
         for ($i = 0;$i <= 25; $i++)
         {
             $presentation = array(
@@ -120,5 +104,10 @@ Praesent gravida est et mi aliquam, nec porta dolor consectetur. Vivamus element
     public function setPresentationFactory($presentationFactory)
     {
         $this->presentationFactory = $presentationFactory;
+    }
+
+    public function setRepository($repository)
+    {
+        $this->repository = $repository;
     }
 }

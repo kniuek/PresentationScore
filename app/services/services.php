@@ -51,9 +51,7 @@ $app['document.manager.default'] = function () use ($app) {
     return new BaseMongoManager($db);
 };
 
-$app['kni.manager.presentation'] = function() use ($app) {
-    return new PresentationManager($app['document.manager.default'], $app['dispatcher']);
-};
+
 
 $app['kni.factory.presentation'] = function() use ($app) {
     return new AbstractFactory('Kni\Presentation\Model\Presentation');
