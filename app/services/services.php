@@ -47,7 +47,7 @@ $app['dispatcher']->addListener(
 );
 
 $app['document.manager.default'] = function () use ($app) {
-    $db = $app['mongo']->$app['config.database'];
+    $db = $app['mongo']->cos;
     return new BaseMongoManager($db);
 };
 

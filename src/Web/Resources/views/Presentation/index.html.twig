@@ -2,14 +2,21 @@
 
 {% block content %}
 	{% for presentation in pagerfanta %}
-		<div class="row">
-			<p>{{ presentation.title }}</p>
-			<p>{{ presentation.author }}</p>
-			<p>{{ presentation.description }}</p>
-			<video controls>
-				<source src="{{ path('stream', {'path' : '/1e/fc/32571be34f3089a6fb78111ee035.mp4'}) }}" type="video/mp4">
-				Your browser does not support HTML5 video.
-			</video>
+		<div class="panel panel-primary">
+			<div class="panel-heading text-center"><h4>{{ presentation.author }} - {{ presentation.title }}</h4></div>
+  			<div class="panel-body">
+  				<div class="row">
+					<div class="col-md-8">{{ presentation.description }}</div>
+					<div class="col-md-4">
+						<video controls class="img-thumbnail presentation">
+							<source src="{{ path('stream', {'path' : '/1e/fc/32571be34f3089a6fb78111ee035.mp4'}) }}" type="video/mp4">
+							Your browser does not support HTML5 video.
+						</video>
+					</div>
+				</div>
+  			</div>
+
+
 		</div>
 	{% endfor %}
 	{% if pagerfanta.hasNextPage() %}

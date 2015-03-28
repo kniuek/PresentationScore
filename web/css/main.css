@@ -3,38 +3,6 @@
 	padding-bottom: 50px;
 }
 
-.frame{
-	position: absolute;
-	margin-top: 100px;
-	margin-left: 500px;
-	border: solid 2px;
-	width: 500px;
-	height: 300px;
-	box-shadow: 6px 6px 6px;
-	border-radius: 25px;
-}
-
-.frame video{
-	width: 300px;
-	/*display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: auto;
-    margin-bottom: auto;*/
-    position: absolute;
-    top: 0;
-    bottom:0;
-    right:0;
-    margin: auto;
-
-}
-
-
-.frame .title{
-	text-align: center;	
-}
-
-.frame .text{
-	position: absolute;
-	left: 2%;
+video.presentation {
+	/*width: 300px;*/
 }
