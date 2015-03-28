@@ -42,3 +42,8 @@ $app->get('/login', function () use ($app) {
 })->bind('modal-login');
 
 $app->match('/logout', function () {})->bind('logout');
+
+$app
+    ->get('/presentation/{presentation}', 'kni.controller.presentation:showAction')
+    ->bind('presentation.show')
+;

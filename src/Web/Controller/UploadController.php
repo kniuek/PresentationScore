@@ -24,13 +24,11 @@ class UploadController
             $data = [
                 'file' => $request->files->get('file')
             ];
-            var_dump($data);
-            exit;
             $file = $this->fileFactory->create($data);
             $this->domainManager->create($file);
         }
         
         
-        //return new JsonResponse(null, JsonResponse::HTTP_OK);
+        return new JsonResponse(null, JsonResponse::HTTP_OK);
     }
 }

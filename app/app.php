@@ -33,6 +33,8 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     ),
 ));
 
+
+$app['config.database'] = 'kni';
 $app['config.server'] = 'localhost';
 $app['mongo'] = function () use ($app) {
     $connection =  new MongoClient($app['config.server']);

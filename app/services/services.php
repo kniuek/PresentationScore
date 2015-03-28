@@ -7,6 +7,7 @@ use Kni\Domain\EventListener\UploadListener;
 use Kni\Presentation\DomainManager\PresentationManager;
 use Kni\Domain\AbstractFactory\AbstractFactory;
 use Storage\Manager\FileManager;
+use Persistence\BaseMongoManager;
 
 
 $app['filesystem.adapter.local'] = function () {

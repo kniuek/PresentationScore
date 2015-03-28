@@ -17,12 +17,12 @@ class AbstractManager
     protected $manager;
     protected $resource;
 
-    public function __construct(ManagerInterface $manager, $eventDispatcher, $resource = 'object')
+    public function __construct($manager, $eventDispatcher, $resource = 'object')
     {
         $this->eventDispatcher = $eventDispatcher;
         $this->manager = $manager;
         $this->resource = $resource;
-        $this->manager->setNamespace($this->getResourceName());
+//        $this->manager->setNamespace($this->getResourceName());
     }
 
     /**
@@ -34,8 +34,8 @@ class AbstractManager
     {
         $this->dispatchEvent($this->getEventName('pre_create'), new GenericEvent($resource));
 
-        $this->manager->persist($resource);
-        $this->manager->flush();
+//        $this->manager->persist($resource);
+//        $this->manager->flush();
 
         $this->dispatchEvent($this->getEventName('post_create'), new GenericEvent($resource));
 
