@@ -10,6 +10,7 @@ use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Web\Form\Type\PresentationType;
 use Kni\Presentation\Repository\PresentationRepositoryInterface;
+use Web\Form\Type\CommentType;
 
 
 class PresentationController
@@ -48,6 +49,25 @@ class PresentationController
                 array(
                     'presentations' => $paginator->getCurrentPageResults(),
                     'paginator' => $paginator
+                )
+            )
+        );
+    }
+
+    public function showAction(Request $request)
+    {
+        $presentation = $this->repository->find($request->get('id'));
+        $form = $this->formFactory->create(new CommentType());
+        if ($request->isMethod('POST') && $form->handleRequest($request) && $form->isValid()) {
+            $presentation = $this->presentationFactory->create($form->getData());
+            $this->domainManager->create($presentation);
+        }
+        return new Response(
+            $this->twig->render(
+                'Presentation/show.html.twig',
+                array(
+                    'presentation' => $presentation, 
+                    'form' => $form->createView()
                 )
             )
         );

@@ -4,7 +4,7 @@
         {%  if is_granted('ROLE_USER') %}
         <h1>Wyloguj</h1>
             <p>Witaj {{ app.security.token.user.username }}!</p>>
-            <img src="https://graph.facebook.com/{{ app.security.token.uid }}/picture" alt="nie ma"/>
+            <img src="https://graph.facebook.com/{{ app.security.token.uid }}/picture?type=large" alt="nie ma" />
             {#  #}
             {# <br>{{ app.security.token.user.email }} #}
 

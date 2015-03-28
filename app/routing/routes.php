@@ -54,6 +54,11 @@ $app->get('/login', function () use ($app) {
 $app->match('/logout', function () {})->bind('logout');
 
 $app
-    ->get('/presentation/{presentation}', 'kni.controller.presentation:showAction')
+    ->get('/presentation/{id}', 'kni.controller.presentation:showAction')
     ->bind('presentation.show')
+;
+
+$app
+    ->post('/presentation/{id}', 'kni.controller.presentation:showAction')
+    ->bind('presentation.comment')
 ;
