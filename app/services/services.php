@@ -5,6 +5,7 @@ use Gaufrette\Adapter\Local as LocalAdapter;
 use Storage\Uploader\Uploader;
 use Kni\Domain\EventListener\UploadListener;
 use Kni\Presentation\DomainManager\PresentationManager;
+use Kni\Presentation\Factory\PresentationFactory;
 use Kni\Domain\AbstractFactory\AbstractFactory;
 use Storage\Manager\FileManager;
 use Persistence\BaseMongoManager;
@@ -52,7 +53,11 @@ $app['document.manager.default'] = function () use ($app) {
 };
 
 $app['kni.factory.presentation'] = function() use ($app) {
-    return new AbstractFactory('Kni\Presentation\Model\Presentation');
+    return new PresentationFactory('Kni\Presentation\Model\Presentation');
+};
+
+$app['kni.factory.comment'] = function() use ($app) {
+    return new AbstractFactory('Kni\Presentation\Model\Comment');
 };
 
 $app['kni.factory.file'] = function() use ($app) {

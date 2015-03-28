@@ -14,11 +14,35 @@ class Presentation implements FileAwareInterface
     protected $file;
     protected $rateCount;
     protected $rateSum;
+    protected $comments;
+
+    /**
+     * @return array
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * @param array $comments
+     */
+    public function setComments($comments)
+    {
+        $this->comments = $comments;
+        return $this;
+    }
+
+    public function addComment($comment)
+    {
+        $this->comments[] = $comment;
+    }
 
     public function __construct()
     {
         $this->rateCount = 0;
         $this->rateSum = 0;
+        $this->comments = [];
     }
 
     public function toArray()
@@ -30,7 +54,19 @@ class Presentation implements FileAwareInterface
             'path' => $this->getPath(),
             'rateCount' => $this->rateCount,
             'rateSum' => $this->rateSum,
+            'comments' => $this->commentsToArray()
         ];
+    }
+
+    protected function commentsToArray()
+    {
+        $com = [];
+
+        foreach ($this->comments as $comment) {
+            $com[] = $comment->toArray();
+        }
+
+        return $com;
     }
 
     public function rate($vote)

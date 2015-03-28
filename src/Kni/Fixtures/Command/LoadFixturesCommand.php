@@ -6,6 +6,7 @@
  */
 namespace Kni\Fixtures\Command;
 
+use Kni\Presentation\Model\Comment;
 use Kni\Presentation\Model\Presentation;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -31,6 +32,15 @@ class LoadFixturesCommand extends Command
         $presentation->setTitle('My Title');
         $presentation->setDescription('My Description');
         $presentation->setPath('/1e/fc/32571be34f3089a6fb78111ee035.mp4');
+        $comment = new Comment();
+        $comment->setAuthor('Kubus');
+        $comment->setContent('nice prezio');
+        $presentation->addComment($comment);
+
+        $comment = new Comment();
+        $comment->setAuthor('Kubus 2');
+        $comment->setContent('another nice prezo');
+        $presentation->addComment($comment);
 
         $this->app['kni.manager.presentation']->create($presentation);
 
