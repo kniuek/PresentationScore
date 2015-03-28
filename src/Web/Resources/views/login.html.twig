@@ -1,14 +1,25 @@
 <div class="container">
-    <h1>Zaloguj</h1>
-    <ul>
+    
+    
         {%  if is_granted('ROLE_USER') %}
-            {{ app.security.token.user.username }}
-            {{ app.security.token.user.email }}
-            {{  dump(app.security.token.user) }}
-            <a class="btn btn-primary" href="{{  path('logout') }}">Logout</a>
+        <h1>Wyloguj</h1>
+            <p>Witaj {{ app.security.token.user.username }}!</p>>
+            <img src="https://graph.facebook.com/{{ app.security.token.uid }}/picture" alt="nie ma"/>
+            {#  #}
+            {# <br>{{ app.security.token.user.email }} #}
+
+            {# {{ app.security.token.first_name }} #}
+
+            {# {{ app.security.token.user.fid }} #}
+            {# {{  dump(app.security.token) }} #}
+            
+            <br><a class="btn btn-primary" href="{{  path('logout') }}">Logout</a>
         {%  else %}
-            <a class="btn btn-primary" href="{{ login_paths.facebook }}">Login with Facebook</a>
+        <h1>Zaloguj</h1>
+            <p>Witaj nieznajomy! </p>
+            <img src="http://www.strangebeaver.com/wp-content/uploads/2011/01/fb/4.jpg" alt="nie ma"/>
+            <br><a class="btn btn-primary" href="{{ login_paths.facebook }}">Login with Facebook</a>
         {%  endif %}
 
-    </ul>
+    
 </div>
