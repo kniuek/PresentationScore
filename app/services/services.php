@@ -7,6 +7,7 @@ use Kni\Domain\EventListener\UploadListener;
 use Kni\Presentation\DomainManager\PresentationManager;
 use Kni\Domain\AbstractFactory\AbstractFactory;
 use Storage\Manager\FileManager;
+use Persistence\BaseMongoManager;
 
 
 $app['filesystem.adapter.local'] = function () {
@@ -46,7 +47,7 @@ $app['dispatcher']->addListener(
 );
 
 $app['document.manager.default'] = function () use ($app) {
-    $db = $app['mongo']->$app['config.database'];
+    $db = $app['mongo']->cos;
     return new BaseMongoManager($db);
 };
 
