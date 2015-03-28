@@ -1,25 +1,35 @@
-$(function() {
-    Interface.initialize();
+
+$(document).ready(function(e) {
+    var i = new Interface();
+    i.init();
 });
-var Interface = function() {
-    var _this;
-    return {
-        initialize: function() {
-            _this = this;
-            this.initJscroll();
-        },
-        initJscroll: function() {
-            $('[data-ui="jscroll"]').jscroll({
-                debug: true
-            });
-            $('[data-ui="jscroll-example2"]').jscroll({
-                autoTrigger: false,
-                debug: true
-            });
-            $('[data-ui="jscroll-example3"]').jscroll({
-                autoTriggerUntil: 3,
-                debug: true
-            });
-        }
+
+function Interface()
+{
+    var self = this;
+    this.init = function()
+    {
+        this.setupEvents();
+    }
+
+    this.setupEvents = function()
+    {
+        $('.stars').on('click', 'img', function(e) {
+            var value = $(this).attr('alt');
+            var url = $(this).closest('.stars').data('rate-url');
+            self.submit(url, {'rate': value});
+        });
+    }
+
+    this.submit = function(address, data) {
+        $.ajax({
+            type: "POST",
+            url: address,
+            data: data,
+            success: function(response) {
+            },
+            dataType: 'json'
+        });
     };
-}();
+}
+

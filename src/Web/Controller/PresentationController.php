@@ -3,6 +3,7 @@
 namespace Web\Controller;
 
 use Pagerfanta\Adapter\MongoAdapter;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Pagerfanta\Pagerfanta;
@@ -50,6 +51,19 @@ class PresentationController
                 )
             )
         );
+    }
+
+    public function rateAction(Request $request)
+    {
+        $id = $request->get('id');
+        $rate = $request->request->get('rate');
+
+        $presentation = $this->repository->find($id);
+
+        $presentation->rate($rate);
+        $this->domainManager->update($presentation);
+
+        return new JsonResponse();
     }
 
     public function recordAction(Request $request)

@@ -25,6 +25,11 @@ class AbstractManager
         $this->manager->setNamespace($this->getResourceName());
     }
 
+    public function getUnitOfWork()
+    {
+        return $this->manager;
+    }
+
     public function getAll()
     {
         return $this->manager->findAll();
@@ -55,7 +60,7 @@ class AbstractManager
     {
         $this->dispatchEvent($this->getEventName('pre_update'), new GenericEvent($resource));
 
-        $this->manager->persist($resource);
+        $this->manager->update($resource);
         $this->manager->flush();
 
         $this->dispatchEvent($this->getEventName('post_update'), new GenericEvent($resource));

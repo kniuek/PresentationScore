@@ -5,7 +5,7 @@ use Kni\Presentation\DomainManager\PresentationManager;
 
 
 $app['kni.repository.presentation'] = function () use ($app) {
-    $repo = new PresentationRepository($app['kni.manager.presentation']);
+    $repo = new PresentationRepository($app['kni.manager.presentation'], $app['kni.factory.presentation']);
 
     return $repo;
 };

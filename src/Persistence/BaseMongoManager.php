@@ -25,6 +25,11 @@ class BaseMongoManager implements ManagerInterface
         $this->getCollection()->insert($object->toArray());
     }
 
+    public function update($object)
+    {
+        $this->getCollection()->update(['_id' => new \MongoId($object->getId())], $object->toArray());
+    }
+
     public function flush()
     {
         // TODO: Implement flush() method.

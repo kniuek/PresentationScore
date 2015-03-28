@@ -30,6 +30,11 @@ $app
     ->bind('presentation.upload.post')
 ;
 
+$app
+    ->post('/presentation/{id}/rate', 'kni.controller.presentation:rateAction')
+    ->bind('presentation_rate')
+;
+
 $app->get('/login', function () use ($app) {
     $services = array_keys($app['oauth.services']);
 
