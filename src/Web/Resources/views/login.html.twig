@@ -1,12 +1,16 @@
 <div class="container">
-    <h1>Zaloguj</h1>
+    
     <ul>
         {%  if is_granted('ROLE_USER') %}
-            {{ app.security.token.user.username }}
+        <h1>Wyloguj</h1>
+            <p>Witaj {{ app.security.token.user.username }}!</p>>
             {{ app.security.token.user.email }}
+            {{ app.security.token.user.fid }}
             {{  dump(app.security.token.user) }}
             <a class="btn btn-primary" href="{{  path('logout') }}">Logout</a>
         {%  else %}
+        <h1>Zaloguj</h1>
+            <p>Witaj nieznajomy! </p>
             <a class="btn btn-primary" href="{{ login_paths.facebook }}">Login with Facebook</a>
         {%  endif %}
 
