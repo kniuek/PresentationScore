@@ -9,12 +9,40 @@ class Presentation implements FileAwareInterface
 {
     protected $id;
     protected $title;
+    protected $slug;
     protected $description;
     protected $path;
     protected $file;
     protected $rateCount;
     protected $rateSum;
     protected $comments;
+    protected $createdAt;
+
+    public function __construct()
+    {
+        $now = new \DateTime();
+        $this->createdAt = $now->format('Y-m-d H:i');
+        $this->rateCount = 0;
+        $this->rateSum = 0;
+        $this->comments = [];
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param string $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
 
     /**
      * @return array
@@ -38,23 +66,18 @@ class Presentation implements FileAwareInterface
         $this->comments[] = $comment;
     }
 
-    public function __construct()
-    {
-        $this->rateCount = 0;
-        $this->rateSum = 0;
-        $this->comments = [];
-    }
-
     public function toArray()
     {
         return [
-            'id' =>  new \MongoId($this->getId()),
+
             'title' => $this->getTitle(),
+            'slug' => $this->getSlug(),
             'description' => $this->getDescription(),
             'path' => $this->getPath(),
             'rateCount' => $this->rateCount,
             'rateSum' => $this->rateSum,
-            'comments' => $this->commentsToArray()
+            'comments' => $this->commentsToArray(),
+            'createdAt' => $this->createdAt,
         ];
     }
 
@@ -63,7 +86,11 @@ class Presentation implements FileAwareInterface
         $com = [];
 
         foreach ($this->comments as $comment) {
-            $com[] = $comment->toArray();
+            if (is_array($comment)) {
+                $com[] = $comment;
+            } else {
+                $com[] = $comment->toArray();
+            }
         }
 
         return $com;
@@ -196,4 +223,22 @@ class Presentation implements FileAwareInterface
     {
         return $this->file !== null;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
 }

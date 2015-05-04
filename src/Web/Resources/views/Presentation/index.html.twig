@@ -18,15 +18,17 @@
   			<div class="panel-footer">
 
 				<div class="row">
-					<div data-rate-url="{{ path('presentation_rate', {'id': presentation._id}) }}" class="col-md-2 stars starHalf"></div>
-					<div class="col-md-5">
+					<div data-rate-url="{{ path('presentation_rate', {'slug': presentation.slug}) }}" class="col-md-2 stars starHalf"></div>
+					<div class="col-md-3">
 						{% if presentation.rateCount != 0 %}
 							{{ (presentation.rateSum/presentation.rateCount)|number_format(2) }}
 						{% endif %}
 					</div>
-					<div class="col-md-5 pull-right">
+					<div class="col-md-5">
 						Liczba komentarzy: {{ presentation.comments|length }}
 					</div>
+
+					<div class="col-md-2"><a href="{{path('presentation.show', {'slug': presentation.slug})}}" class="btn btn-primary">Pokaż</a></div>
 				</div>
   			</div>
 

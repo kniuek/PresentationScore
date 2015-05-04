@@ -12,4 +12,6 @@ interface PresentationRepositoryInterface
     public function findAll();
     public function findByUser();
     public function find($id);
+    public function existsWithSlug($slug);
+    public function findBySlug($slug);
 }

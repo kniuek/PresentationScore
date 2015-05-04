@@ -18,6 +18,7 @@ $app['kni.controller.presentation'] = function() use ($app) {
     );
 
     $controller->setPresentationFactory($app['kni.factory.presentation']);
+    $controller->setCommentFactory($app['kni.factory.comment']);
     $controller->setRepository($app['kni.repository.presentation']);
 
     return $controller;

@@ -5,22 +5,18 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionResolver\OptionResolverInterface;
 
-class PresentationType extends AbstractType
+class CommentType extends AbstractType
 {
 
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
-			->add('title', 'text')
-			->add('text', 'text'
-                                //, array(
-                            //"attr" => array("multiple" => "multiple"))
-                        )
+			->add('content', 'textarea')
 		;
 	}
 
 	public function getName()
 	{
-		return "kni_presentation";
+		return "kni_comment";
 	}
 }

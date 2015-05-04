@@ -31,7 +31,7 @@ $app
 ;
 
 $app
-    ->post('/presentation/{id}/rate', 'kni.controller.presentation:rateAction')
+    ->post('/presentation/{slug}/rate', 'kni.controller.presentation:rateAction')
     ->bind('presentation_rate')
 ;
 
@@ -54,6 +54,11 @@ $app->get('/login', function () use ($app) {
 $app->match('/logout', function () {})->bind('logout');
 
 $app
-    ->get('/presentation/{presentation}', 'kni.controller.presentation:showAction')
+    ->get('/presentation/{slug}', 'kni.controller.presentation:showAction')
     ->bind('presentation.show')
+;
+
+$app
+    ->post('/presentation/{slug}', 'kni.controller.presentation:commentAction')
+    ->bind('presentation.comment')
 ;

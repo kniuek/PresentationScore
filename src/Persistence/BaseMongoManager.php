@@ -27,7 +27,9 @@ class BaseMongoManager implements ManagerInterface
 
     public function update($object)
     {
-        $this->getCollection()->update(['_id' => new \MongoId($object->getId())], $object->toArray());
+        $id = $object->getId()->{'$id'};
+
+        $this->getCollection()->update(['_id' => new \MongoId($id)], $object->toArray());
     }
 
     public function flush()

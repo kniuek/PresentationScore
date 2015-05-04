@@ -14,6 +14,8 @@ require __DIR__.'/config/dev.php';
 require __DIR__.'/services/controllers.php';
 require __DIR__.'/services/services.php';
 require __DIR__.'/services/repository.php';
+require __DIR__.'/services/listeners.php';
+
 
 $console = new Console('My Silex Application', 'n/a');
 $console->getDefinition()->addOption(new InputOption('--env', '-e', InputOption::VALUE_REQUIRED, 'The Environment name.', 'dev'));

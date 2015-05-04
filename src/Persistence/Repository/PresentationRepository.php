@@ -35,6 +35,29 @@ class PresentationRepository extends AbstractRepository implements PresentationR
         $collection = $this->manager->getUnitOfWork()->getCollection();
 
         $object = $collection->findOne(['_id' => new \MongoId($id)]);
+
+        $presentation = $this->factory->create($object);
+        return $presentation;
+    }
+
+
+    public function existsWithSlug($slug)
+    {
+        $presentation = $this->findBySlug($slug);
+
+        return (boolean) $presentation;
+    }
+
+    public function findBySlug($slug)
+    {
+        $collection = $this->manager->getUnitOfWork()->getCollection();
+
+        $object = $collection->findOne(['slug' => $slug]);
+
+        if (!$object) {
+            return null;
+        }
+
         $presentation = $this->factory->create($object);
 
         return $presentation;

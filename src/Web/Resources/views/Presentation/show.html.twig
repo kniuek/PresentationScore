@@ -1,0 +1,64 @@
+{% extends 'Layout/base.html.twig' %}
+
+{% block content %}
+		<div class="panel panel-primary">
+			<div class="panel-heading text-center"><h4>{{ 'sadasdasdas' }} - {{ presentation.title }}</h4></div>
+  			<div class="panel-body">
+  				<div class="row">
+					<div class="col-md-8">{{ presentation.description }}</div>
+					<div class="col-md-4">
+						<video controls class="img-thumbnail presentation">
+							<source src="{{ path('stream', {'path' : presentation.path}) }}" type="video/mp4">
+							Your browser does not support HTML5 video.
+						</video>
+					</div>
+				</div>
+				<div class="row">
+			        <form action="{{ path('presentation.comment', {'slug': presentation.slug}) }}" method="POST" enctype="multipart/form-data" class="col-md-offset-2">
+			           {# {{ form_row(form) }}#}
+			            {#<div class="form-group row"> #}
+			                {#<label for="title" class="col-md-2">Tytuł</label>#}
+			                {#<div class="input-group col-md-6">#}
+			            	    {#{{ form_widget(form.title, {'attr': {'class': attr.class|default('') ~ 'form-control'}}) }}#}
+			            	{#</div>#}
+			            {#</div>#}
+			            <div class="form-group row">
+			            	<label for="supervisor" class="col-md-2">Treść</label>
+			            	<div class="input-group col-md-6">
+			            	     {{ form_widget(form.content, {'attr': {'class': attr.class|default('') ~ 'form-control'}}) }}
+			                </div>
+							{{ form_rest(form) }}
+			            </div>
+			            <div class="form-group row">			   
+			                <div class=" col-md-8 text-right">
+			                    <button type="submit" class="btn btn-primary">Zapisz</button>
+			                </div>
+			            </div>
+			        </form>
+			    </div>
+			</div>
+			<div class="row">
+				<ul>
+					{% for comment in presentation.comments %}
+						<li>
+							<span>{{ comment.author }}</span>
+							<p>{{ comment.content }}</p>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+  			<div class="panel-footer">
+
+				<div class="row">
+					{# <div data-rate-url="{{ path('presentation_rate', {'id': presentation._id}) }}" class="col-md-2 stars starHalf"></div> #}
+					<div class="col-md-10">
+						{% if presentation.rateCount != 0 %}
+							{{ (presentation.rateSum/presentation.rateCount)|number_format(2) }}
+						{% endif %}
+					</div>
+				</div>
+  			</div>
+
+
+		</div>
+{% endblock %}

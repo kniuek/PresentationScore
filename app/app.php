@@ -8,6 +8,7 @@ use Silex\Provider\ValidatorServiceProvider;
 use Silex\Provider\HttpFragmentServiceProvider;
 use Silex\Provider\FormServiceProvider;
 use \Mongo;
+use Persistence\BaseMongoManager;
 
 $app = new Application();
 
@@ -88,5 +89,10 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     }));
     return $twig;
 });
+
+$app['document.manager.default'] = function () use ($app) {
+    $db = $app['mongo']->{$app['db.name']};
+    return new BaseMongoManager($db);
+};
 
 return $app;
