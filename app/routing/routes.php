@@ -42,11 +42,11 @@ $app->get('/login', function () use ($app) {
         'login_paths' => array_map(function ($service) use ($app) {
             return $app['url_generator']->generate('_auth_service', array(
                 'service' => $service,
-                '_csrf_token' => $app['form.csrf_provider']->generateCsrfToken('oauth')
+                '_csrf_token' => $app['form.csrf_provider']->getToken('oauth')
             ));
         }, array_combine($services, $services)),
         'logout_path' => $app['url_generator']->generate('logout', array(
-            '_csrf_token' => $app['form.csrf_provider']->generateCsrfToken('logout')
+            '_csrf_token' => $app['form.csrf_provider']->getToken('logout')
         ))
     ));
 })->bind('modal-login');

@@ -69,7 +69,6 @@ class Presentation implements FileAwareInterface
     public function toArray()
     {
         return [
-
             'title' => $this->getTitle(),
             'slug' => $this->getSlug(),
             'description' => $this->getDescription(),
